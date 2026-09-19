@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "home": "Home",
+    "apartments": "Apartments",
+    "locations": "Locations",
+    "stayOptions": "Stays",
+    "gallery": "Gallery",
+    "reviews": "Reviews",
+    "blog": "Guide",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login",
+    "account": "Guest Portal",
+    "admin": "Admin Dashboard",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "badge": "Boutique Serviced Luxury Living",
+    "title": "LIVE · STAY · FEEL HOME",
+    "subtitle": "Immerse yourself in Lahore's most prestigious fully-furnished serviced apartments in Bahria Town and Johar Town. Combining the warmth of home with 5-star hotel hospitality.",
+    "exploreSuites": "Explore Suites",
+    "virtualTour": "Virtual Tour",
+    "locationLabel": "Location",
+    "checkInLabel": "Check-In",
+    "checkOutLabel": "Check-Out",
+    "guestsLabel": "Guests",
+    "stayTypeLabel": "Stay Type",
+    "shortStay": "Short Stay (Nightly)",
+    "longStay": "Long Stay (Monthly)",
+    "searchBtn": "Check Availability"
+  },
+  "trust": {
+    "happyGuests": "Happy Guests Hosted",
+    "luxuryApartments": "Luxury Suites",
+    "primeLocations": "Prime Lahore Locations",
+    "averageRating": "Average Guest Rating"
+  },
+  "common": {
+    "perNight": "per night",
+    "perMonth": "per month",
+    "from": "From",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Baths",
+    "guests": "Guests",
+    "sqft": "Sq Ft",
+    "viewDetails": "View Details",
+    "bookDirect": "Book Direct",
+    "reserveNow": "Reserve Now",
+    "whatsappInquiry": "WhatsApp Inquiry",
+    "amenities": "Amenities",
+    "houseRules": "House Rules",
+    "filterBy": "Filter By",
+    "all": "All",
+    "available": "Available",
+    "occupied": "Occupied",
+    "verifiedGuest": "Verified Guest",
+    "writeReview": "Write a Review",
+    "comingSoon": "Coming Soon"
+  }
+}

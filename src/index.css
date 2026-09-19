@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-surface: #FFFFFF;
+    --bg-subtle: #FAF9F6;
+    --text-main: #0B0D12;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0B0D12;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Quattrocento Sans', sans-serif;
+    letter-spacing: -0.01em;
+  }
+
+  [dir="rtl"] {
+    font-family: 'Noto Nastaliq Urdu', 'Noto Sans Arabic', 'Montserrat', sans-serif;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-family: 'Noto Nastaliq Urdu', 'Noto Sans Arabic', serif;
+    line-height: 1.6;
+  }
+}
+
+/* Custom Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4F5F7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C8A24A;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B08832;
+}
+
+/* Glassmorphism & Luxury Utility Classes */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200, 162, 74, 0.2);
+}
+
+.dark .glass-nav {
+  background: rgba(11, 13, 18, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(200, 162, 74, 0.25);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(230, 200, 119, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(11, 13, 18, 0.05);
+}
+
+.dark .glass-card {
+  background: rgba(18, 23, 43, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(200, 162, 74, 0.25);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.gold-text {
+  color: #C8A24A;
+}
+
+.gold-bg {
+  background-color: #C8A24A;
+}
+
+.dark-bg {
+  background-color: #0B0D12;
+}
+
+.cream-bg {
+  background-color: #FAF8F5;
+}
+
+.gold-border-glow {
+  border: 1px solid #C8A24A;
+  box-shadow: 0 0 15px rgba(200, 162, 74, 0.2);
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}

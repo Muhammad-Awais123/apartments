@@ -1,0 +1,60 @@
+{
+  "nav": {
+    "home": "ہوم",
+    "apartments": "اپارٹمنٹس",
+    "locations": "لوکیشنز",
+    "stayOptions": "رہائش کے اختیارات",
+    "gallery": "تصاویر",
+    "reviews": "مہمانوں کی آراء",
+    "blog": "لاہور گائیڈ",
+    "about": "ہمارے بارے میں",
+    "contact": "رابطہ کریں",
+    "login": "لاگ ان",
+    "account": "مہمان پورٹل",
+    "admin": "ایڈمن ڈیش بورڈ",
+    "bookNow": "ابھی بک کریں"
+  },
+  "hero": {
+    "badge": "پرتعیش فرنشڈ رہائش لاہور",
+    "title": "رہیں · سکون پائیں · اپنے گھر جیسا احساس",
+    "subtitle": "لاہور کے سب سے پروقار علاقوں، بحریہ ٹاؤن اور جوہر ٹاؤن میں فرنشڈ سروسڈ اپارٹمنٹس۔ گھر جیسی راحت اور فائیو اسٹار ہوٹل والی سروس۔",
+    "exploreSuites": "اپارٹمنٹس دیکھیں",
+    "virtualTour": "ورچوئل ٹور",
+    "locationLabel": "علاقہ منتخب کریں",
+    "checkInLabel": "آمد کی تاریخ",
+    "checkOutLabel": "روانگی کی تاریخ",
+    "guestsLabel": "مہمانوں کی تعداد",
+    "stayTypeLabel": "رہائش کی قسم",
+    "shortStay": "مختصر رہائش (روزانہ)",
+    "longStay": "ماہانہ رہائش (لانگ اسٹے)",
+    "searchBtn": "دستیابی چیک کریں"
+  },
+  "trust": {
+    "happyGuests": "مطمئن مہمان",
+    "luxuryApartments": "پرتعیش اپارٹمنٹس",
+    "primeLocations": "لاہور کے اہم ترین مقامات",
+    "averageRating": "اوسط ریٹنگ"
+  },
+  "common": {
+    "perNight": "فی رات",
+    "perMonth": "فی ماہ",
+    "from": "شروع قیمت",
+    "bedrooms": "بیڈ رومز",
+    "bathrooms": "باتھ رومز",
+    "guests": "مہمان",
+    "sqft": "مربع فٹ",
+    "viewDetails": "تفصیلات دیکھیں",
+    "bookDirect": "ڈائریکٹ بک کریں",
+    "reserveNow": "ابھی بک کروائیں",
+    "whatsappInquiry": "واٹس ایپ پر رابطہ",
+    "amenities": "سہولیات",
+    "houseRules": "قواعد و ضوابط",
+    "filterBy": "فلٹر کریں",
+    "all": "تمام",
+    "available": "دستیاب",
+    "occupied": "بُک شدہ",
+    "verifiedGuest": "تصدیق شدہ مہمان",
+    "writeReview": "رائے درج کریں",
+    "comingSoon": "عنقریب"
+  }
+}

@@ -1,0 +1,82 @@
+export const siteConfig = {
+  name: "Zak Residence",
+  tagline: "LIVE · STAY · FEEL HOME",
+  description: "Luxury fully-furnished serviced apartments in Bahria Town and Johar Town, Lahore, Pakistan.",
+  phone: "+92 300 8472910",
+  whatsappNumber: "923008472910",
+  email: "reservations@zakresidence.com",
+  supportEmail: "concierge@zakresidence.com",
+  currency: "PKR",
+  currencySymbol: "Rs.",
+  timezone: "Asia/Karachi",
+  checkInTime: "14:00 (2:00 PM)",
+  checkOutTime: "12:00 (12:00 PM)",
+  taxPercentage: 5, // Provincial hospitality service tax %
+  serviceFeePercentage: 3,
+  securityDepositDefault: 15000,
+  minShortStayNights: 1,
+  minLongStayNights: 30,
+  socialLinks: {
+    instagram: "https://instagram.com/zak_residence",
+    facebook: "https://facebook.com/zakresidencepk",
+    whatsapp: "https://wa.me/923008472910?text=Hello%20Zak%20Residence%20Team%2C%20I%20would%20like%20to%20inquire%20about%20booking%20an%20apartment.",
+    youtube: "https://youtube.com/@zakresidence",
+    tiktok: "https://tiktok.com/@zakresidence",
+  },
+  locations: [
+    {
+      id: "bahria-town",
+      name: "Bahria Town Lahore",
+      shortDescription: "Upscale gated community with lush parks, Grand Jamia Mosque, and Eiffel Tower replica.",
+      address: "Sector C & Jasmine Block, Bahria Town, Lahore, Pakistan",
+      landmark: "Near Grand Jamia Mosque & Mall of Bahria",
+      distanceToAirport: "35 mins via Ring Road",
+      isComingSoon: false,
+      apartmentCount: 5,
+    },
+    {
+      id: "johar-town",
+      name: "Johar Town Lahore",
+      shortDescription: "Vibrant central hub near Emporium Mall, Doctors Hospital, and leading corporate offices.",
+      address: "Block G3 & Phase 2, Johar Town, Lahore, Pakistan",
+      landmark: "5 mins from Emporium Mall & Expo Centre",
+      distanceToAirport: "25 mins via Canal Road",
+      isComingSoon: false,
+      apartmentCount: 3,
+    },
+    {
+      id: "gulberg-dha",
+      name: "Gulberg & DHA Phase 6",
+      shortDescription: "High-rise executive suites in Lahore's luxury commercial core.",
+      address: "Main Boulevard Gulberg & Raya Commercial DHA Phase 6, Lahore",
+      landmark: "Near MM Alam Road & Defence Raya Golf Club",
+      distanceToAirport: "15 mins",
+      isComingSoon: true,
+      apartmentCount: 0,
+    }
+  ],
+  amenitiesList: [
+    { id: "wifi", name: "Ultra-Fast Fiber WiFi (100+ Mbps)", icon: "Wifi" },
+    { id: "smart-lock", name: "Smart Keyless Digital Door Locks", icon: "Lock" },
+    { id: "kitchen", name: "Fully Equipped Chef's Kitchen", icon: "Utensils" },
+    { id: "ac", name: "Inverter ACs in All Rooms", icon: "AirVent" },
+    { id: "geyser", name: "24/7 Instant Hot Water Geyser", icon: "Flame" },
+    { id: "smart-tv", name: "55\" 4K Smart TV with Netflix", icon: "Tv" },
+    { id: "housekeeping", name: "Regular Daily/Weekly Housekeeping", icon: "Sparkles" },
+    { id: "parking", name: "Dedicated Secure Underground Parking", icon: "Car" },
+    { id: "security", name: "24/7 CCTV & Security Guard", icon: "ShieldCheck" },
+    { id: "backup-power", name: "100% Automatic Generator Power Backup", icon: "Zap" },
+    { id: "washer", name: "Automatic Washing Machine & Iron", icon: "Shirt" },
+    { id: "elevator", name: "High-Speed Passenger Elevator", icon: "ArrowUpDown" },
+  ],
+  policies: {
+    cancellation: "Free cancellation up to 48 hours before scheduled check-in. Cancellations within 48 hours incur a 1-night fee.",
+    houseRules: [
+      "No smoking inside the suites (designated balcony area provided)",
+      "Valid Pakistani CNIC or International Passport required at check-in",
+      "No unauthorized loud parties or events after 10:00 PM",
+      "Family and corporate guests strictly welcomed",
+      "Pets allowed with prior approval in designated ground units"
+    ]
+  }
+};
