@@ -7,6 +7,7 @@ import { Input } from "../../../components/ui/Input";
 import { siteConfig } from "../../../config/site";
 import { luxuryImages } from "../../../config/images";
 import { toast } from "sonner";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function LocationsSection() {
   const [waitlistEmail, setWaitlistEmail] = useState("");
@@ -50,7 +51,13 @@ export function LocationsSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/40 dark:bg-ink-950">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Heading */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="text-center space-y-3 max-w-2xl mx-auto"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
             <MapPin className="w-3.5 h-3.5" />
             Prime Lahore Locations
@@ -61,17 +68,20 @@ export function LocationsSection() {
           <p className="text-sm text-ink-600 dark:text-ink-400">
             Handpicked residences situated in Lahore’s safest, most prestigious, and vibrant neighborhoods.
           </p>
-        </div>
+        </motion.div>
 
         {/* Location Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {locationCards.map((loc, idx) => (
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {locationCards.map((loc) => (
             <motion.div
               key={loc.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
+              variants={fadeUp}
               className="group bg-white dark:bg-ink-900 rounded-3xl overflow-hidden border border-ink-100 dark:border-ink-800 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col"
             >
               {/* Image Preview */}
@@ -115,10 +125,7 @@ export function LocationsSection() {
 
           {/* Card 3: Coming Soon Waitlist Card (Gulberg / DHA) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            variants={fadeUp}
             className="bg-ink-900 text-white rounded-3xl p-7 border border-gold-500/30 shadow-xl flex flex-col justify-between relative overflow-hidden"
           >
             {/* Background Glow */}
@@ -164,7 +171,7 @@ export function LocationsSection() {
               )}
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

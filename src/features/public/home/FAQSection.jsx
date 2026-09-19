@@ -4,6 +4,7 @@ import { ChevronDown, HelpCircle, Sparkles, Search } from "lucide-react";
 import { Input } from "../../../components/ui/Input";
 import { useQuery } from "@tanstack/react-query";
 import { cmsApi } from "../../../services/api";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState(0);
@@ -26,7 +27,13 @@ export function FAQSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/50 dark:bg-ink-950">
       <div className="max-w-4xl mx-auto space-y-10">
         {/* Header */}
-        <div className="text-center space-y-3">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="text-center space-y-3"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
             <HelpCircle className="w-3.5 h-3.5" />
             Frequently Asked Questions
@@ -47,16 +54,23 @@ export function FAQSection() {
               className="h-10 text-xs bg-white dark:bg-ink-900"
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Accordion List */}
-        <div className="space-y-3">
+        <motion.div
+          variants={staggerContainer(0.06)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="space-y-3"
+        >
           {filteredFaqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
 
             return (
-              <div
+              <motion.div
                 key={faq.q}
+                variants={fadeUp}
                 className="bg-white dark:bg-ink-900 rounded-2xl border border-ink-100 dark:border-ink-800 overflow-hidden shadow-sm transition-all"
               >
                 <button
@@ -89,10 +103,10 @@ export function FAQSection() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

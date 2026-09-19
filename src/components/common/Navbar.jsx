@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Menu,
   X,
@@ -241,53 +242,61 @@ export function Navbar() {
       </div>
 
       {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-ink-950 border-b border-ink-100 dark:border-ink-800 px-4 pt-3 pb-6 space-y-3 animate-in slide-in-from-top duration-200">
-          <div className="grid grid-cols-2 gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 text-xs font-semibold rounded-lg text-ink-800 dark:text-ink-200 hover:bg-gold-50 dark:hover:bg-ink-900"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="pt-3 border-t border-ink-100 dark:border-ink-800 flex flex-col gap-2">
-            {isAuthenticated ? (
-              <div className="flex gap-2">
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden overflow-hidden bg-white dark:bg-ink-950 border-b border-ink-100 dark:border-ink-800 px-4 pt-3 pb-6 space-y-3"
+          >
+            <div className="grid grid-cols-2 gap-2">
+              {navLinks.map((link) => (
                 <Link
-                  to={user?.role === "admin" || user?.role === "manager" ? "/admin" : "/account"}
+                  key={link.path}
+                  to={link.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1"
+                  className="px-3 py-2 text-xs font-semibold rounded-lg text-ink-800 dark:text-ink-200 hover:bg-gold-50 dark:hover:bg-ink-900 transition-colors"
                 >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="pt-3 border-t border-ink-100 dark:border-ink-800 flex flex-col gap-2">
+              {isAuthenticated ? (
+                <div className="flex gap-2">
+                  <Link
+                    to={user?.role === "admin" || user?.role === "manager" ? "/admin" : "/account"}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex-1"
+                  >
+                    <Button variant="outline" size="sm" className="w-full">
+                      {user?.role === "admin" ? "Admin Panel" : "Guest Account"}
+                    </Button>
+                  </Link>
+                  <Button variant="danger" size="sm" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
                   <Button variant="outline" size="sm" className="w-full">
-                    {user?.role === "admin" ? "Admin Panel" : "Guest Account"}
+                    {t("nav.login")} / Register
                   </Button>
                 </Link>
-                <Button variant="danger" size="sm" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="outline" size="sm" className="w-full">
-                  {t("nav.login")} / Register
+              )}
+
+              <Link to="/apartments" onClick={() => setMobileMenuOpen(false)}>
+                <Button variant="gold" size="md" className="w-full">
+                  {t("nav.bookNow")}
                 </Button>
               </Link>
-            )}
-
-            <Link to="/apartments" onClick={() => setMobileMenuOpen(false)}>
-              <Button variant="gold" size="md" className="w-full">
-                {t("nav.bookNow")}
-              </Button>
-            </Link>
-          </div>
-        </div>
-      )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

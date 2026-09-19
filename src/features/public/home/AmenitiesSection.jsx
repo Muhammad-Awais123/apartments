@@ -12,11 +12,9 @@ import {
   ShieldCheck,
   Zap,
   Shirt,
-  ArrowUpDown,
   Clock,
-  Coffee,
-  CheckCircle2
 } from "lucide-react";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function AmenitiesSection() {
   const amenities = [
@@ -38,7 +36,13 @@ export function AmenitiesSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/50 dark:bg-ink-950">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Heading */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="text-center space-y-3 max-w-2xl mx-auto"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
             Unrivaled Hospitality
@@ -49,19 +53,22 @@ export function AmenitiesSection() {
           <p className="text-sm text-ink-600 dark:text-ink-400">
             Every apartment is designed from the ground up to exceed hotel standards while delivering the comfort, space, and privacy of home.
           </p>
-        </div>
+        </motion.div>
 
         {/* Amenities Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {amenities.map((item, idx) => {
+        <motion.div
+          variants={staggerContainer(0.06)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {amenities.map((item) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
+                variants={fadeUp}
                 className="bg-white dark:bg-ink-900 p-6 rounded-2xl border border-ink-100 dark:border-ink-800 shadow-sm hover:border-gold-400/60 hover:shadow-luxury transition-all duration-300 group"
               >
                 <div className="w-12 h-12 rounded-xl bg-gold-50 dark:bg-gold-950/50 text-gold-600 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-gold-500 group-hover:text-ink-900 transition-all duration-300">
@@ -76,7 +83,7 @@ export function AmenitiesSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

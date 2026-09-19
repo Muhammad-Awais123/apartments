@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Users, Building2, MapPin, Star, ShieldCheck, Award } from "lucide-react";
+import { Users, Building2, MapPin, Star } from "lucide-react";
+import { staggerContainer, fadeUp, defaultViewport } from "../../../lib/animations";
 
 export function TrustBarSection() {
   const stats = [
@@ -13,16 +14,19 @@ export function TrustBarSection() {
   return (
     <section className="bg-white border-y border-ink-100 dark:bg-ink-900 dark:border-ink-800 py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          {stats.map((stat, idx) => {
+        <motion.div
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+        >
+          {stats.map((stat) => {
             const Icon = stat.icon;
             return (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                variants={fadeUp}
                 className="flex flex-col items-center text-center p-4 rounded-2xl hover:bg-cream-50/50 dark:hover:bg-ink-800/40 transition-colors"
               >
                 <div className="w-12 h-12 rounded-2xl bg-gold-50 dark:bg-gold-950/40 text-gold-600 flex items-center justify-center mb-3 shadow-sm border border-gold-200/50 dark:border-gold-800/50">
@@ -40,7 +44,7 @@ export function TrustBarSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { MapPin, Navigation, Compass, Plane, ShoppingBag, Hospital, Landmark, Utensils } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { cmsApi } from "../../../services/api";
+import { fadeUp, defaultViewport } from "../../../lib/animations";
 
 export function NeighborhoodGuideSection() {
   const [selectedLocation, setSelectedLocation] = useState("bahria-town");
@@ -27,7 +28,13 @@ export function NeighborhoodGuideSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/50 dark:bg-ink-950">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
               <Compass className="w-3.5 h-3.5" />
@@ -64,7 +71,7 @@ export function NeighborhoodGuideSection() {
               Johar Town
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Neighborhood Details Grid */}
         {current && (

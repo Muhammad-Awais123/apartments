@@ -1,8 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Search, CreditCard, ShieldCheck, Key, ArrowRight, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "../../../components/ui/Button";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function HowItWorksSection() {
   const steps = [
@@ -36,7 +35,13 @@ export function HowItWorksSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/50 dark:bg-ink-950">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Heading */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="text-center space-y-3 max-w-2xl mx-auto"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
             Seamless Experience
@@ -47,19 +52,22 @@ export function HowItWorksSection() {
           <p className="text-sm text-ink-600 dark:text-ink-400">
             No physical front desk lines, no waiting for keys, no hassle. Fast, secure, digital living.
           </p>
-        </div>
+        </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative"
+        >
           {steps.map((item, idx) => {
             const Icon = item.icon;
             return (
               <motion.div
                 key={item.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.12 }}
+                variants={fadeUp}
                 className="relative bg-white dark:bg-ink-900 rounded-3xl p-6 border border-ink-100 dark:border-ink-800 shadow-sm hover:shadow-luxury transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Step Number Watermark */}
@@ -89,7 +97,7 @@ export function HowItWorksSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

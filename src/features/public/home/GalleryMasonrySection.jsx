@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Maximize2, Camera } from "lucide-react";
 import { Lightbox } from "../../../components/ui/Lightbox";
 import { luxuryImages } from "../../../config/images";
+import { fadeUp, scaleIn, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function GalleryMasonrySection() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -33,7 +34,13 @@ export function GalleryMasonrySection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-ink-900">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
               <Camera className="w-3.5 h-3.5" />
@@ -63,24 +70,28 @@ export function GalleryMasonrySection() {
               </button>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Masonry Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <motion.div
+          variants={staggerContainer(0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+        >
           {filteredItems.map((item, idx) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.05 }}
+              variants={scaleIn}
               onClick={() => openLightbox(idx)}
               className="group relative aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden bg-ink-100 dark:bg-ink-800 cursor-pointer shadow-sm hover:shadow-luxury"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-ink-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 text-white">
                 <p className="text-xs font-bold tracking-wide">{item.title}</p>
@@ -91,7 +102,7 @@ export function GalleryMasonrySection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Fullscreen Lightbox Modal */}

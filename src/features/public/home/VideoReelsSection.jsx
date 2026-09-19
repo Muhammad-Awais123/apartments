@@ -4,6 +4,7 @@ import { Play, Sparkles, Video, Instagram, Compass, ExternalLink } from "lucide-
 import { Button } from "../../../components/ui/Button";
 import { Modal } from "../../../components/ui/Modal";
 import { luxuryImages } from "../../../config/images";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function VideoReelsSection() {
   const [activeVideoModal, setActiveVideoModal] = useState(null);
@@ -45,7 +46,13 @@ export function VideoReelsSection() {
 
       <div className="max-w-7xl mx-auto space-y-12 relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-400/30 text-gold-400 text-xs font-bold uppercase tracking-wider">
               <Video className="w-3.5 h-3.5" />
@@ -74,17 +81,20 @@ export function VideoReelsSection() {
               Watch Reels on @zak_residence
             </Button>
           </a>
-        </div>
+        </motion.div>
 
         {/* Video Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {videoTours.map((tour, idx) => (
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {videoTours.map((tour) => (
             <motion.div
               key={tour.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
+              variants={fadeUp}
               onClick={() => setActiveVideoModal(tour)}
               className="group relative rounded-3xl overflow-hidden bg-ink-900 border border-ink-800 shadow-xl cursor-pointer hover:border-gold-500/50 hover:shadow-gold-glow transition-all duration-300 flex flex-col"
             >
@@ -99,7 +109,7 @@ export function VideoReelsSection() {
 
                 {/* Floating Play Button */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-14 h-14 rounded-full bg-gold-500 text-white flex items-center justify-center shadow-2xl group-hover:scale-115 transition-transform duration-300">
+                  <div className="w-14 h-14 rounded-full bg-gold-500 text-white flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
                     <Play className="w-6 h-6 fill-current ml-1" />
                   </div>
                 </div>
@@ -121,7 +131,7 @@ export function VideoReelsSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* Video Modal Player */}

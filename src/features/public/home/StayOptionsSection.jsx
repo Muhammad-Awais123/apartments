@@ -6,6 +6,7 @@ import { Button } from "../../../components/ui/Button";
 import { formatPKR } from "../../../lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { cmsApi } from "../../../services/api";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function StayOptionsSection() {
   const navigate = useNavigate();
@@ -27,7 +28,13 @@ export function StayOptionsSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-ink-900">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Heading */}
-        <div className="text-center space-y-3 max-w-2xl mx-auto">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="text-center space-y-3 max-w-2xl mx-auto"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
             Flexible Living
@@ -38,20 +45,23 @@ export function StayOptionsSection() {
           <p className="text-sm text-ink-600 dark:text-ink-400">
             Whether staying for a weekend wedding, a medical consult, or a year-long corporate posting, choose the ideal package.
           </p>
-        </div>
+        </motion.div>
 
         {/* 4 Category Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stayOptions.map((opt, idx) => {
+        <motion.div
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {stayOptions.map((opt) => {
             const Icon = icons[opt.id] || Sparkles;
 
             return (
               <motion.div
                 key={opt.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                variants={fadeUp}
                 className={`relative rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 ${
                   opt.isPopular
                     ? "bg-ink-900 text-white border-2 border-gold-500 shadow-xl"
@@ -127,7 +137,7 @@ export function StayOptionsSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

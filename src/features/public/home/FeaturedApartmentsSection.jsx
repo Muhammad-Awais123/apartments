@@ -19,6 +19,7 @@ import { useWishlistStore } from "../../../store/wishlistStore";
 import { formatPKR } from "../../../lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { apartmentsApi } from "../../../services/api";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function FeaturedApartmentsSection() {
   const navigate = useNavigate();
@@ -36,7 +37,13 @@ export function FeaturedApartmentsSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-ink-900">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header with Category Tabs */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
               <Sparkles className="w-3.5 h-3.5" />
@@ -83,20 +90,23 @@ export function FeaturedApartmentsSection() {
               Johar Town
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Apartments Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredList.map((apt, idx) => {
+        <motion.div
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {featuredList.map((apt) => {
             const isSaved = savedApartmentIds.includes(apt.id);
 
             return (
               <motion.div
                 key={apt.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                variants={fadeUp}
                 className="group bg-white dark:bg-ink-950 rounded-3xl overflow-hidden border border-ink-100 dark:border-ink-800 shadow-sm hover:shadow-luxury hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
               >
                 {/* Image Showcase */}
@@ -186,7 +196,7 @@ export function FeaturedApartmentsSection() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* View All Apartments Footer CTA */}
         <div className="text-center pt-4">

@@ -6,6 +6,7 @@ import { Button } from "../../../components/ui/Button";
 import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 import { cmsApi } from "../../../services/api";
+import { fadeUp, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function SpecialOffersSection() {
   const navigate = useNavigate();
@@ -46,7 +47,13 @@ export function SpecialOffersSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-ink-900">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Banner with Countdown */}
-        <div className="bg-ink-900 rounded-3xl p-8 sm:p-10 border border-gold-500/30 text-white relative overflow-hidden shadow-2xl">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="bg-ink-900 rounded-3xl p-8 sm:p-10 border border-gold-500/30 text-white relative overflow-hidden shadow-2xl"
+        >
           {/* Subtle Glow */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -103,17 +110,20 @@ export function SpecialOffersSection() {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Promo Coupons Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {coupons.slice(0, 4).map((c, idx) => (
+        <motion.div
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
+          {coupons.slice(0, 4).map((c) => (
             <motion.div
               key={c.code}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.1 }}
+              variants={fadeUp}
               className="bg-cream-50/50 dark:bg-ink-950 p-5 rounded-2xl border border-dashed border-gold-400/60 dark:border-gold-800/60 shadow-sm flex flex-col justify-between space-y-4"
             >
               <div className="space-y-2">
@@ -154,7 +164,7 @@ export function SpecialOffersSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -20,6 +20,7 @@ import { siteConfig } from "../../../config/site";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import { leadsApi } from "../../../services/api";
+import { fadeUp, scaleIn, staggerContainer, defaultViewport } from "../../../lib/animations";
 
 export function InstagramFeedSection() {
   const posts = luxuryImages.instagramFeed;
@@ -28,7 +29,13 @@ export function InstagramFeedSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-ink-900 border-t border-ink-100 dark:border-ink-800">
       <div className="max-w-7xl mx-auto space-y-10">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+        >
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
               <Instagram className="w-3.5 h-3.5" />
@@ -59,26 +66,30 @@ export function InstagramFeedSection() {
               </Button>
             </a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Instagram Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
-          {posts.map((post, idx) => (
+        <motion.div
+          variants={staggerContainer(0.05)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4"
+        >
+          {posts.map((post) => (
             <motion.a
               key={post.id}
               href={siteConfig.socialLinks.instagram}
               target="_blank"
               rel="noreferrer"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: idx * 0.05 }}
+              variants={scaleIn}
               className="group relative aspect-square rounded-2xl overflow-hidden bg-ink-100 dark:bg-ink-800 block shadow-sm hover:shadow-luxury"
             >
               <img
                 src={post.image}
                 alt={post.caption}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-ink-900/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center p-3 text-white text-center gap-2">
                 <div className="flex items-center gap-3 text-xs font-bold">
@@ -97,7 +108,7 @@ export function InstagramFeedSection() {
               </div>
             </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -153,7 +164,13 @@ export function PartnerSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/50 dark:bg-ink-950">
       <div className="max-w-7xl mx-auto">
-        <div className="bg-ink-900 rounded-3xl p-8 sm:p-12 border border-gold-500/30 text-white shadow-2xl relative overflow-hidden">
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="bg-ink-900 rounded-3xl p-8 sm:p-12 border border-gold-500/30 text-white shadow-2xl relative overflow-hidden"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center relative z-10">
             {/* Left Value Proposition */}
             <div className="space-y-6">
@@ -255,7 +272,7 @@ export function PartnerSection() {
               </form>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -264,7 +281,13 @@ export function PartnerSection() {
 export function FinalCTASection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-ink-900 border-t border-ink-100 dark:border-ink-800">
-      <div className="max-w-5xl mx-auto text-center space-y-8">
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={defaultViewport}
+        className="max-w-5xl mx-auto text-center space-y-8"
+      >
         <div className="space-y-4">
           <h2 className="font-heading text-3xl sm:text-5xl font-bold text-ink-900 dark:text-white">
             Ready to Experience Lahore in Unmatched Luxury?
@@ -302,7 +325,7 @@ export function FinalCTASection() {
         <p className="text-xs text-ink-400">
           Instant booking confirmation · 24/7 Smart Keyless Entry · 100% Loadshedding Backup
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 }

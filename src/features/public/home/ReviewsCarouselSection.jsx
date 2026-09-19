@@ -19,6 +19,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { reviewsApi, apartmentsApi } from "../../../services/api";
 import { formatDate } from "../../../lib/utils";
 import { toast } from "sonner";
+import { fadeUp, defaultViewport } from "../../../lib/animations";
 
 export function ReviewsCarouselSection() {
   const queryClient = useQueryClient();
@@ -117,7 +118,14 @@ export function ReviewsCarouselSection() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-cream-50/50 dark:bg-ink-950">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header with Aggregate Rating & Write Review CTA */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        {/* Header */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={defaultViewport}
+          className="flex flex-col md:flex-row md:items-end justify-between gap-6"
+        >
           <div className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-100 dark:bg-gold-950/50 text-gold-700 dark:text-gold-300 text-xs font-bold uppercase tracking-wider">
               <Star className="w-3.5 h-3.5 fill-gold-500" />
@@ -165,7 +173,7 @@ export function ReviewsCarouselSection() {
               </Button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Reviews Grid / Carousel */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
